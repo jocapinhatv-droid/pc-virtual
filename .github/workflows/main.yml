@@ -14,7 +14,7 @@ jobs:
 
       - name: Login Tailscale
         run: |
-          & "C:\Program Files\Tailscale\tailscale.exe" up --authkey tskey-auth-kJZ5qkfG4J11CNTRL-G8LPrmaFuBMskHGYx4B4CM7pwRKHinjf
+          & "C:\Program Files\Tailscale\tailscale.exe" up --authkey tskey-auth-kFc12wd22111CNTRL-evrvw3uqAvKMNkCHpFWKvKyKkaDQd2g67
 
       - name: Enable RDP
         run: |
