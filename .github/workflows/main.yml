@@ -1,0 +1,24 @@
+name: Virtual PC
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Download Tailscale
+        run: |
+          curl -L https://pkgs.tailscale.com/stable/tailscale-setup.exe -o tailscale.exe
+          start tailscale.exe /silent
+
+      - name: Login Tailscale
+        run: tailscale up --authkey tskey-auth-kNh77rsAR811CNTRL-Nt8EeoAE6DThrJt7f2AFDTUBTxYHUXfqZ
+
+      - name: Enable RDP
+        run: |
+          Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0
+          net user runneradmin 123456
+
+      - name: Keep Alive
+        run: ping localhost -t
